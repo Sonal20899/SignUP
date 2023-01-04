@@ -1,15 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class SignupScreen extends StatelessWidget{
-
+class SignupScreen extends StatelessWidget {
+  String? gender;
   @override
-Widget build(BuildContext context){
-  // ignore: prefer_const_constructors
-  return Scaffold(
-body: const Center(
-  
-  child: Text("SIGN UP Screen"),)
-);
-}
+  Widget build(BuildContext context) {
+    // ignore: prefer_const_constructors
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          height: 180,
+          color: Colors.yellow,
+          padding: EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              RadioListTile(
+                title: const Text('Abc',
+                    style: TextStyle(color: Colors.black54, fontSize: 10)),
+                value: "male",
+                groupValue: gender,
+                onChanged: (value) {},
+              ),
+              RadioListTile(
+                title: const Text('Abc',
+                    style: TextStyle(color: Colors.black54, fontSize: 10)),
+                value: "female",
+                groupValue: gender,
+                onChanged: (value) {},
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }

@@ -37,10 +37,14 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   fluttertoast: ^8.1.1
+  moor_flutter: ^4.1.0
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner:
+  moor_generator:
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -63,6 +67,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets :
   - lib/image/sign.jpg
+  - assets/images/Myntra.png
+  - assets/images/user.png
 
   # assets:
   #   - images/a_dot_burr.jpeg
