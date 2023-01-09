@@ -1,8 +1,30 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
 
-class Signin_Screen extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+class Signin_Screen extends StatefulWidget {
+  @override
+  State<Signin_Screen> createState() => _Signin_ScreenState();
+}
+
+class _Signin_ScreenState extends State<Signin_Screen> {
+  File? image;
+  final ImagePicker picker = ImagePicker();
+  Future getImage() async {
+    final pickerImage = await picker.getImage(source: ImageSource.camera);
+    setState(() {
+      if (pickerImage != Null) {
+        image = File(pickerImage!.path);
+      } else {
+        print("No Image");
+      }
+    });
+  }
+
   String? gender;
   bool? checkboxvalue = false;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

@@ -1,13 +1,16 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/buttons.dart';
+import 'package:flutter_demo/connection_checked.dart';
+import 'package:flutter_demo/imgpicker.dart';
 import 'package:flutter_demo/myntra.dart';
-import 'package:flutter_demo/signin.dart';
-import 'package:flutter_demo/singup.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_demo/share_preferencetask.dart';
+import 'package:flutter_demo/shared_preference.dart';
+import 'package:flutter_demo/signout.dart';
 
 void main() {
-  runApp(MaterialApp(home: Signin_Screen())); //MyApp()
+  runApp(MaterialApp(home: Signout_Screen())); //MyApp()
 }
 
 class MyApp extends StatelessWidget {
@@ -33,6 +36,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+    //print("${Auth.getIsIntroCheck()}");
+
     Timer(
         Duration(seconds: 3),
         () => Navigator.push(

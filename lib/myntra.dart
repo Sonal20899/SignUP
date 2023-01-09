@@ -4,6 +4,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/myntra.dart';
+import 'package:flutter_demo/shared_preference.dart';
 import 'package:flutter_demo/signin.dart';
 
 class MyntraScreen extends StatefulWidget {
@@ -19,17 +20,17 @@ class _MyntraScreenState extends State<MyntraScreen> {
 
   @override
   void initState() {
-    date();
+    //date();
     super.initState();
   }
 
-  date() {
-    print("hi");
-    Map<String, String> Mapvalue = HashMap();
-    Mapvalue['name'] = 'Soni';
-    Mapvalue['name1'] = 'Sonal';
-    print(Mapvalue);
-  }
+  // date() {
+  //   print("hi");
+  //   Map<String, String> Mapvalue = HashMap();
+  //   Mapvalue['name'] = 'Soni';
+  //   Mapvalue['name1'] = 'Sonal';
+  //   print(Mapvalue);
+  // }
 
   TextEditingController unamecontroller = TextEditingController();
   TextEditingController upwdcontroller = TextEditingController();
@@ -150,7 +151,7 @@ class _MyntraScreenState extends State<MyntraScreen> {
                         ),
                         TextButton(
                             onPressed: (() {}),
-                            child: const Text("Know Your Unique ID"))
+                            child: const Text("Know Your Unique ID")),
                       ]),
                 ),
               ),
@@ -162,7 +163,7 @@ class _MyntraScreenState extends State<MyntraScreen> {
   } // build method
 
   getLoginCheckApi(String username, String password) {
-    if ((username == "sonal") && (password == "s")) {
+    if ((username == "sonal") && (password == "123")) {
       setState(() {
         names = unamecontroller.text.toString();
         password = upwdcontroller.text.toString();
