@@ -7,7 +7,7 @@ import 'package:flutter_demo/singup.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
-  runApp(MaterialApp(home: MyntraScreen())); //MyApp()
+  runApp(MaterialApp(home: Signin_Screen())); //MyApp()
 }
 
 class MyApp extends StatelessWidget {

@@ -9,9 +9,8 @@ class SignupScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Container(
-          height: 180,
+          height: 120,
           color: Colors.yellow,
-          padding: EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
