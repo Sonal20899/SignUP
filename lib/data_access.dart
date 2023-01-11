@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+
+import 'model/user_model.dart';
 
 class LoadDataInternet extends StatefulWidget {
   @override
@@ -13,19 +17,42 @@ class _LoadDataInternetState extends State<LoadDataInternet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(),
+      body: FutureBuilder(
+        future: fetchData(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (
+                  contex,
+                  index,
+                ) {
+                  return Text(snapshot.data![index].username!);
+                });
+          } else {
+            return Container();
+          }
+        },
+      ),
     );
   }
 
   @override
   void initState() {
-    fetchData();
+    fetchData().then((value) {
+      print(value.length);
+    });
   }
 
-  Future<void> fetchData() async {
+  Future<List<UserModel>> fetchData() async {
+    List<UserModel> data = <UserModel>[];
     http.Response response = await client.get(Uri.parse(baseUrl));
-    print(response.statusCode);
-
-    //print(response.body.toString());
+    if (response.statusCode == 200) {
+      String responseData = response.body.toString();
+      return (jsonDecode(responseData.toString()) as List<dynamic>)
+          .map((usermap) => UserModel.fromJson(usermap))
+          .toList();
+    }
+    return data;
   }
 }

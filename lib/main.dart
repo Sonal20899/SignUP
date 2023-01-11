@@ -1,16 +1,23 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_demo/buttons.dart';
-import 'package:flutter_demo/connection_checked.dart';
-import 'package:flutter_demo/imgpicker.dart';
+import 'package:flutter_demo/Expenses.dart';
+
 import 'package:flutter_demo/myntra.dart';
-import 'package:flutter_demo/share_preferencetask.dart';
-import 'package:flutter_demo/shared_preference.dart';
+import 'package:flutter_demo/signin.dart';
+
 import 'package:flutter_demo/signout.dart';
 
+import 'button.dart';
+import 'camera_permissoin.dart';
+import 'data_access.dart';
+
 void main() {
-  runApp(MaterialApp(home: Signout_Screen())); //MyApp()
+  // ignore: prefer_const_constructors
+  runApp(MaterialApp(
+      // theme: ThemeData.light(),
+      // darkTheme: ThemeData.dark(),
+      home: Expenses_Screen())); //MyApp()
 }
 
 class MyApp extends StatelessWidget {

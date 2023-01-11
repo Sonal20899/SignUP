@@ -182,12 +182,20 @@ class _Signin_ScreenState extends State<Signin_Screen> {
                       height: 5,
                     ),
                     Container(
-                      child: Image.asset("assets/images/user.png"),
+                      child: Center(
+                          child: image == null
+                              ? const Text("No Image")
+                              : Image.file(image!)),
                       height: 80,
                     ),
-                    const Text(
-                      "Upload Selfie",
-                      style: TextStyle(color: Colors.grey),
+                    TextButton(
+                      onPressed: (() {
+                        getImage();
+                      }),
+                      child: Text(
+                        "Upload Selfie",
+                        style: TextStyle(color: Colors.grey),
+                      ),
                     ),
                     Container(
                       height: 100,
