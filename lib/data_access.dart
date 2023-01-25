@@ -1,9 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/model/EMP_Model.dart';
+import 'package:flutter_demo/model/emp_model.dart';
 import 'package:http/http.dart' as http;
 
 import 'model/user_model.dart';
+import 'model/emp_model.dart';
 
 class LoadDataInternet extends StatefulWidget {
   @override
@@ -11,7 +14,8 @@ class LoadDataInternet extends StatefulWidget {
 }
 
 class _LoadDataInternetState extends State<LoadDataInternet> {
-  String baseUrl = "https://jsonplaceholder.typicode.com/users";
+  String baseUrl = "https://jsonplaceholder.typicode.com/albums";
+  //"https://jsonplaceholder.typicode.com/users";
   var client = http.Client();
 
   @override
@@ -27,7 +31,7 @@ class _LoadDataInternetState extends State<LoadDataInternet> {
                   contex,
                   index,
                 ) {
-                  return Text(snapshot.data![index].username!);
+                  return Text(snapshot.data![index].title!);
                 });
           } else {
             return Container();

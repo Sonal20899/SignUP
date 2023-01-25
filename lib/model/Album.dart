@@ -1,11 +1,11 @@
-class UserModel {
+class Album {
   int? userId;
   int? id;
   String? title;
 
-  UserModel({this.userId, this.id, this.title});
+  Album({this.userId, this.id, this.title});
 
-  UserModel.fromJson(Map<String, dynamic> json) {
+  Album.fromJson(Map<String, dynamic> json) {
     userId = json['userId'];
     id = json['id'];
     title = json['title'];
