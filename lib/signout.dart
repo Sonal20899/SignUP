@@ -606,11 +606,13 @@ class Signout_Screen extends StatelessWidget {
                   padding: EdgeInsets.only(left: 80),
                   color: Colors.blue,
                   child: Row(
+                    // ignore: prefer_const_literals_to_create_immutables
                     children: [
                       const Icon(Icons.swipe_outlined),
                       const SizedBox(
                         width: 10,
                       ),
+                      // ignore: prefer_const_constructors
                       Center(
                         child: const Text(
                           "Switch transport mode",

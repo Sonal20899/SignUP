@@ -60,7 +60,7 @@ class _Signin_ScreenState extends State<Signin_Screen> {
                                   bottomRight: Radius.circular(20))),
                           child: const Center(child: Text("1")),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         const Text("What's your mode of transport today ? "),
@@ -182,17 +182,17 @@ class _Signin_ScreenState extends State<Signin_Screen> {
                       height: 5,
                     ),
                     Container(
+                      height: 80,
                       child: Center(
                           child: image == null
                               ? const Text("No Image")
                               : Image.file(image!)),
-                      height: 80,
                     ),
                     TextButton(
                       onPressed: (() {
                         getImage();
                       }),
-                      child: Text(
+                      child: const Text(
                         "Upload Selfie",
                         style: TextStyle(color: Colors.grey),
                       ),

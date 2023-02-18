@@ -27,7 +27,6 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   String desc1 = "";
   String type1 = "";
   final _formKey = GlobalKey<FormState>();
-  var client = http.Client();
 
   late final _databaseInstance = AppDatabase.sharedInstance;
 
@@ -98,28 +97,32 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
           height: 20,
         ),
         ElevatedButton(
-            onPressed: () {
+            onPressed: (() {
               if (_formKey.currentState!.validate()) {
                 title1 = titlecontroller.text.toString();
                 type1 = typecontroller.text.toString();
                 desc1 = desccontroller.text.toString();
                 print(title1);
+                print(type1);
+                print(desc1);
                 submiteTaskToDB(title1, desc1, type1);
+                Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => DblistScreen()),
+                  MaterialPageRoute(builder: (context) => DBListScreen()),
                 );
               }
-            },
-            child: const Text("Submit"))
+            }),
+            child: Text("Submit"))
       ]),
     ));
   }
 
   submiteTaskToDB(String title, String desc, String type) {
     String uuid = const Uuid().v1().toString();
+
     DBTask dbTask =
-        DBTask(Title: title, Description: desc, type: type, id: uuid);
+        DBTask(Title: title1, Description: desc1, type: type1, id: uuid);
     TasksDao(_databaseInstance).addTask(dbTask);
   }
 }

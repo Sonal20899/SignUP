@@ -466,17 +466,164 @@ class $DBUserinfosTable extends DBUserinfos
   }
 }
 
+class SectionThreeData extends DataClass
+    implements Insertable<SectionThreeData> {
+  final String company;
+  SectionThreeData({required this.company});
+  factory SectionThreeData.fromData(
+      Map<String, dynamic> data, GeneratedDatabase db,
+      {String? prefix}) {
+    final effectivePrefix = prefix ?? '';
+    return SectionThreeData(
+      company: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}company'])!,
+    );
+  }
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['company'] = Variable<String>(company);
+    return map;
+  }
+
+  SectionThreeCompanion toCompanion(bool nullToAbsent) {
+    return SectionThreeCompanion(
+      company: Value(company),
+    );
+  }
+
+  factory SectionThreeData.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return SectionThreeData(
+      company: serializer.fromJson<String>(json['company']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'company': serializer.toJson<String>(company),
+    };
+  }
+
+  SectionThreeData copyWith({String? company}) => SectionThreeData(
+        company: company ?? this.company,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('SectionThreeData(')
+          ..write('company: $company')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => company.hashCode;
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is SectionThreeData && other.company == this.company);
+}
+
+class SectionThreeCompanion extends UpdateCompanion<SectionThreeData> {
+  final Value<String> company;
+  const SectionThreeCompanion({
+    this.company = const Value.absent(),
+  });
+  SectionThreeCompanion.insert({
+    required String company,
+  }) : company = Value(company);
+  static Insertable<SectionThreeData> custom({
+    Expression<String>? company,
+  }) {
+    return RawValuesInsertable({
+      if (company != null) 'company': company,
+    });
+  }
+
+  SectionThreeCompanion copyWith({Value<String>? company}) {
+    return SectionThreeCompanion(
+      company: company ?? this.company,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (company.present) {
+      map['company'] = Variable<String>(company.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SectionThreeCompanion(')
+          ..write('company: $company')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $SectionThreeTable extends SectionThree
+    with TableInfo<$SectionThreeTable, SectionThreeData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $SectionThreeTable(this.attachedDatabase, [this._alias]);
+  final VerificationMeta _companyMeta = const VerificationMeta('company');
+  @override
+  late final GeneratedColumn<String?> company = GeneratedColumn<String?>(
+      'company', aliasedName, false,
+      type: const StringType(), requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns => [company];
+  @override
+  String get aliasedName => _alias ?? 'section_three';
+  @override
+  String get actualTableName => 'section_three';
+  @override
+  VerificationContext validateIntegrity(Insertable<SectionThreeData> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('company')) {
+      context.handle(_companyMeta,
+          company.isAcceptableOrUnknown(data['company']!, _companyMeta));
+    } else if (isInserting) {
+      context.missing(_companyMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => <GeneratedColumn>{};
+  @override
+  SectionThreeData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    return SectionThreeData.fromData(data, attachedDatabase,
+        prefix: tablePrefix != null ? '$tablePrefix.' : null);
+  }
+
+  @override
+  $SectionThreeTable createAlias(String alias) {
+    return $SectionThreeTable(attachedDatabase, alias);
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
   late final $DBTasksTable dBTasks = $DBTasksTable(this);
   late final $DBUserinfosTable dBUserinfos = $DBUserinfosTable(this);
+  late final $SectionThreeTable sectionThree = $SectionThreeTable(this);
   late final TasksDao tasksDao = TasksDao(this as AppDatabase);
   late final DBUserinfosDoa dBUserinfosDoa =
       DBUserinfosDoa(this as AppDatabase);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [dBTasks, dBUserinfos];
+  List<DatabaseSchemaEntity> get allSchemaEntities =>
+      [dBTasks, dBUserinfos, sectionThree];
 }
 
 // **************************************************************************
@@ -488,4 +635,7 @@ mixin _$TasksDaoMixin on DatabaseAccessor<AppDatabase> {
 }
 mixin _$DBUserinfosDoaMixin on DatabaseAccessor<AppDatabase> {
   $DBUserinfosTable get dBUserinfos => attachedDatabase.dBUserinfos;
+}
+mixin _$SectionThreeDataDaoMixin on DatabaseAccessor<AppDatabase> {
+  $SectionThreeTable get sectionThree => attachedDatabase.sectionThree;
 }
